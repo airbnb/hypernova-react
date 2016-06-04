@@ -1,0 +1,63 @@
+{
+  "name": "hypernova-react",
+  "version": "1.0.0",
+  "description": "React bindings for Hypernova",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "rimraf lib && babel src -d lib",
+    "lint": "eslint src test",
+    "test": "npm run lint && npm run build && npm run test:coverage",
+    "tests-only": "npm run build && npm run test:quick",
+    "test:coverage": "babel-node node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- -R tap test/*-test.js",
+    "test:quick": "babel-node node_modules/.bin/_mocha -R tap test/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airbnb/hypernova-react.git"
+  },
+  "keywords": [
+    "react",
+    "hypernova",
+    "server",
+    "render",
+    "isomorphic",
+    "universal"
+  ],
+  "files": [
+    "README.md",
+    "lib",
+    "src",
+    "test",
+    ".eslintrc",
+    ".babelrc"
+  ],
+  "author": "Josh Perez <josh.perez@airbnb.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airbnb/hypernova-react/issues"
+  },
+  "homepage": "https://github.com/airbnb/hypernova-react#readme",
+  "peerDependencies": {
+    "react": "0.14.x || >= 15.x",
+    "react-dom": "0.14.x || >= 15.x"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-preset-airbnb": "^2.0.0",
+    "chai": "^3.5.0",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.3",
+    "eslint-plugin-react": "^5.1.1",
+    "istanbul": "^0.4.3",
+    "jsdom": "^9.2.1",
+    "mocha": "^2.5.3",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.4",
+    "sinon-sandbox": "^1.0.2"
+  }
+}
