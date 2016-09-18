@@ -7,9 +7,9 @@
     "prepublish": "npm run build",
     "build": "rimraf lib && babel src -d lib",
     "lint": "eslint src test",
-    "test": "npm run lint && npm run build && npm run test:coverage",
+    "test": "npm run lint && npm run build && npm run coverage",
     "tests-only": "npm run build && npm run test:quick",
-    "test:coverage": "babel-node node_modules/.bin/istanbul cover --report=html node_modules/.bin/_mocha -- -R tap test/*-test.js",
+    "coverage": "babel-node node_modules/.bin/istanbul cover --report=html node_modules/.bin/_mocha -- -R tap test/*-test.js",
     "test:quick": "babel-node node_modules/.bin/_mocha -R tap test/*-test.js"
   },
   "repository": {
