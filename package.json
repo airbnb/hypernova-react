@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/airbnb/hypernova-react#readme",
   "peerDependencies": {
-    "hypernova": "^1.0.0",
+    "hypernova": "^2.0.0",
     "react": "0.14.x || >= 15.x",
     "react-dom": "0.14.x || >= 15.x"
   },
@@ -52,7 +52,7 @@
     "eslint-plugin-import": "^1.15.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.1",
-    "hypernova": "^1.0.0",
+    "hypernova": "^2.0.0",
     "istanbul": "^0.4.5",
     "jsdom": "^9.5.0",
     "mocha": "^2.5.3",
