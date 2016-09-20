@@ -12,11 +12,14 @@ export const renderReact = (name, component) => hypernova({
   },
 
   client() {
-    const { node, data } = load(name);
+    const payloads = load(name);
 
-    if (node) {
-      const element = React.createElement(component, data);
-      ReactDOM.render(element, node);
+    if (payloads) {
+      payloads.forEach((payload) => {
+        const { node, data } = payload;
+        const element = React.createElement(component, data);
+        ReactDOM.render(element, node);
+      });
     }
 
     return component;
