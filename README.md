@@ -14,7 +14,7 @@ npm install hypernova-react
 
 ## Usage
 
-Here's how use use it in your module:
+Here's how to use it in your module:
 
 ```js
 import { renderReact } from 'hypernova-react';
