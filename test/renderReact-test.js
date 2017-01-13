@@ -1,6 +1,7 @@
-import ExampleReactComponent from './components/ExampleReactComponent';
 import jsdom from 'jsdom';
 import { assert } from 'chai';
+
+import ExampleReactComponent from './components/ExampleReactComponent';
 import { renderReact } from '..';
 
 describe('renderReact', () => {

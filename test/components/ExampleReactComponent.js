@@ -8,5 +8,8 @@ function ExampleReactComponent(props) {
 ExampleReactComponent.propTypes = {
   name: React.PropTypes.string,
 };
+ExampleReactComponent.defaultProps = {
+  name: '',
+};
 
 module.exports = ExampleReactComponent;

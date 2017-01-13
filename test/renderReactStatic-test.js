@@ -1,5 +1,6 @@
-import ExampleReactComponent from './components/ExampleReactComponent';
 import { assert } from 'chai';
+
+import ExampleReactComponent from './components/ExampleReactComponent';
 import { renderReactStatic } from '..';
 
 describe('renderReactStatic', () => {
