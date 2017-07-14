@@ -35,3 +35,8 @@ node_modules
 TODO
 coverage
 lib
+
+# Only apps should have lockfiles
+npm-shrinkwrap.json
+yarn.lock
+package-lock.json
