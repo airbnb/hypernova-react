@@ -5,11 +5,16 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "rimraf lib && babel src -d lib",
+    "clean": "rimraf lib coverage",
+    "prebuild": "npm run clean",
+    "build": "babel src -d lib",
     "lint": "eslint src test",
-    "test": "npm run lint && npm run build && npm run coverage",
-    "tests-only": "npm run build && npm run test:quick",
+    "pretest": "npm run lint",
+    "test": "npm run coverage",
+    "tests-only": "npm run test:quick",
+    "precoverage": "npm run build",
     "coverage": "babel-node node_modules/.bin/istanbul cover --report=html node_modules/.bin/_mocha -- -R tap test/*-test.js",
+    "pretest:quick": "npm run build",
     "test:quick": "babel-node node_modules/.bin/_mocha -R tap test/*-test.js"
   },
   "repository": {
