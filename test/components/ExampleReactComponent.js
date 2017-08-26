@@ -1,4 +1,5 @@
 const React = require('react');
+const PropTypes = require('prop-types');
 
 function ExampleReactComponent(props) {
   const name = ['Hello', props.name];
@@ -6,7 +7,7 @@ function ExampleReactComponent(props) {
 }
 
 ExampleReactComponent.propTypes = {
-  name: React.PropTypes.string,
+  name: PropTypes.string,
 };
 ExampleReactComponent.defaultProps = {
   name: '',
