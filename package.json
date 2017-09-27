@@ -63,7 +63,7 @@
     "mocha": "^3.5.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.0.0",
     "rimraf": "^2.6.1",
     "sinon": "^3.2.1",
     "sinon-sandbox": "^1.0.2"
