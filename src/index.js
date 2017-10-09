@@ -18,7 +18,12 @@ export const renderReact = (name, component) => hypernova({
       payloads.forEach((payload) => {
         const { node, data } = payload;
         const element = React.createElement(component, data);
-        ReactDOM.render(element, node);
+
+        if (ReactDOM.hydrate) {
+          ReactDOM.hydrate(element, node);
+        } else {
+          ReactDOM.render(element, node);
+        }
       });
     }
 

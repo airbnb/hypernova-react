@@ -1,5 +1,7 @@
 import jsdom from 'jsdom';
 import { assert } from 'chai';
+import sinon from 'sinon';
+import ReactDOM from 'react-dom';
 
 import ExampleReactComponent from './components/ExampleReactComponent';
 import { renderReact } from '..';
@@ -20,7 +22,7 @@ describe('renderReact', () => {
     assert.match(result, /Hello Desmond/);
   });
 
-  it('calls hypernova.client', (done) => {
+  it('calls hypernova.client (hydrate method)', (done) => {
     jsdom.env(result, (err, window) => {
       if (err) {
         done(err);
@@ -30,8 +32,43 @@ describe('renderReact', () => {
       global.window = window;
       global.document = window.document;
 
+      const hydrateMethod = sinon.spy(ReactDOM, 'hydrate');
+
       // Calling it again for the client.
       renderReact('ExampleReactComponent', ExampleReactComponent);
+
+      assert(hydrateMethod.calledOnce);
+
+      delete global.window;
+      delete global.document;
+
+      hydrateMethod.restore();
+
+      done();
+    });
+  });
+
+  it('calls hypernova.client (render method)', (done) => {
+    jsdom.env(result, (err, window) => {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      const sandbox = sinon.createSandbox();
+      sandbox.stub(ReactDOM, 'hydrate').value(undefined);
+
+      const renderMethod = sinon.spy(ReactDOM, 'render');
+
+      global.window = window;
+      global.document = window.document;
+
+      // Calling it again for the client.
+      renderReact('ExampleReactComponent', ExampleReactComponent);
+
+      assert(renderMethod.calledOnce);
+
+      sandbox.restore();
 
       delete global.window;
       delete global.document;
