@@ -33,3 +33,19 @@ export const renderReactStatic = (name, component) => hypernova({
 
   client() {},
 });
+
+export const renderToNodeStream = (name, component) => hypernova({
+  server() {
+    return props => ReactDOMServer.renderToNodeStream(React.createElement(component, props));
+  },
+
+  client() {},
+});
+
+export const renderToStaticNodeStream = (name, component) => hypernova({
+  server() {
+    return props => ReactDOMServer.renderToStaticNodeStream(React.createElement(component, props));
+  },
+
+  client() {},
+});
