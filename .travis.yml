@@ -2,11 +2,9 @@ language: node_js
 os:
  - linux
 node_js:
-  - "9"
+  - "10"
   - "8"
-  - "7"
   - "6"
-  - "5"
   - "4"
 before_install:
   - 'nvm install-latest-npm'
@@ -33,6 +31,3 @@ matrix:
   allow_failures:
     - os: osx
     - env: TEST=true ALLOW_FAILURE=true
-    - node_js: "9"
-    - node_js: "7"
-    - node_js: "5"
