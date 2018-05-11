@@ -1,56 +1,23 @@
 import { assert } from 'chai';
+import sinon from 'sinon';
 
 import ExampleReactComponent from './components/ExampleReactComponent';
 import { renderReactStatic } from '..';
-import { renderReactStatic as renderReactStaticServer } from '../lib/server';
+import * as renderReactServerModule from '../lib/server';
 
 describe('renderReactStatic', () => {
-  let result;
-  beforeEach(() => {
-    result = renderReactStatic('ExampleReactComponent', ExampleReactComponent)({ name: 'Zack' });
-  });
-
   it('exists', () => {
     assert.isFunction(renderReactStatic);
     assert.equal(renderReactStatic.length, 2);
   });
 
-  it('has correct markup on server', () => {
-    assert.isString(result);
-    assert.match(result, /Hello Zack/);
-  });
-});
+  it('calls renderReactStaticServer', () => {
+    const renderReactStaticServerSpy = sinon.spy(renderReactServerModule, 'renderReactStaticServer');
 
-describe('renderReactStatic server side endpoint', () => {
-  let result;
-  beforeEach(() => {
-    result = renderReactStaticServer('ExampleReactComponent', ExampleReactComponent)({ name: 'Zack' });
-  });
+    renderReactStatic('ExampleReactComponent', ExampleReactComponent)({ name: 'Desmond' });
 
-  it('exists', () => {
-    assert.isFunction(renderReactStaticServer);
-    assert.equal(renderReactStaticServer.length, 2);
-  });
+    assert(renderReactStaticServerSpy.calledOnce, `renderReactServer was not called once but ${renderReactStaticServerSpy.callCount} times`);
 
-  it('has correct markup on server', () => {
-    assert.isString(result);
-    assert.match(result, /Hello Zack/);
-  });
-});
-
-describe('renderReactStatic server side endpoint', () => {
-  let result;
-  beforeEach(() => {
-    result = renderReactStaticServer('ExampleReactComponent', ExampleReactComponent)({ name: 'Zack' });
-  });
-
-  it('exists', () => {
-    assert.isFunction(renderReactStaticServer);
-    assert.equal(renderReactStaticServer.length, 2);
-  });
-
-  it('has correct markup on server', () => {
-    assert.isString(result);
-    assert.match(result, /Hello Zack/);
+    renderReactStaticServerSpy.restore();
   });
 });
