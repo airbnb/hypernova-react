@@ -25,3 +25,6 @@ export default renderReact(
   MyComponent,
 );
 ```
+
+If you want to [use React as a simple static page generator, 
+as stripping away the extra attributes can save some bytes](https://reactjs.org/docs/react-dom-server.html#rendertostaticmarkup), `renderReactStatic` is what you want:
