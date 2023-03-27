@@ -1,40 +1,44 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
-import hypernova, { serialize, load } from 'hypernova';
+import React from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { renderToPipeableStream } from "react-dom/server";
+import hypernova from "hypernova";
 
-export const renderReact = (name, component) => hypernova({
-  server() {
-    return (props) => {
-      const contents = ReactDOMServer.renderToString(React.createElement(component, props));
-      return serialize(name, contents, props);
-    };
-  },
+const { load, serialize } = hypernova;
 
-  client() {
-    const payloads = load(name);
+export const renderReact = (name, component) =>
+    hypernova({
+        server() {
+            return (props) => {
+                const contents = renderToPipeableStream(React.createElement(component, props));
+                return serialize(name, contents, props);
+            };
+        },
 
-    if (payloads) {
-      payloads.forEach((payload) => {
-        const { node, data } = payload;
-        const element = React.createElement(component, data);
+        client() {
+            const payloads = load(name);
 
-        if (ReactDOM.hydrate) {
-          ReactDOM.hydrate(element, node);
-        } else {
-          ReactDOM.render(element, node);
-        }
-      });
-    }
+            if (payloads) {
+                payloads.forEach((payload) => {
+                    const { node, data } = payload;
+                    const element = React.createElement(component, data);
 
-    return component;
-  },
-});
+                    if (hydrateRoot) {
+                        hydrateRoot(node, element);
+                    } else {
+                        createRoot(node).render(element);
+                    }
+                });
+            }
 
-export const renderReactStatic = (name, component) => hypernova({
-  server() {
-    return props => ReactDOMServer.renderToStaticMarkup(React.createElement(component, props));
-  },
+            return component;
+        },
+    });
 
-  client() {},
-});
+export const renderReactStatic = (name, component) =>
+    hypernova({
+        server() {
+            return (props) => renderToPipeableStream(React.createElement(component, props));
+        },
+
+        client() {},
+    });

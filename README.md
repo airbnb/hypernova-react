@@ -1,6 +1,6 @@
 # hypernova-react
 
-[React](https://github.com/facebook/react) bindings for [Hypernova](https://github.com/airbnb/hypernova).
+[React](https://github.com/facebook/react) 18 bindings for [Hypernova](https://github.com/airbnb/hypernova).
 
 On the server, wraps the component in a function to render it to a HTML string given its props.
 
@@ -9,7 +9,7 @@ On the client, calling this function with your component scans the DOM for any s
 ## Install
 
 ```sh
-npm install hypernova-react
+npm install @samiashi/hypernova-react
 ```
 
 ## Usage
