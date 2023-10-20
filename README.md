@@ -30,3 +30,6 @@ export default renderReact(
   MyComponent,
 );
 ```
+
+If you want to [render a static page, 
+as stripping away the extra attributes can save some bytes](https://reactjs.org/docs/react-dom-server.html#rendertostaticmarkup), `renderReactStatic` is what you want.
